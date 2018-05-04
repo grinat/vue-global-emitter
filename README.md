@@ -5,7 +5,7 @@ Simple global vue emitter which realising pub/sub without and with pull for Vue.
 ### Installation
 
 ```
-npm install vue vue-global-emitter rxjs --save
+npm install vue-global-emitter rxjs --save
 ```
 
 ```
