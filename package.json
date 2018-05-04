@@ -1,0 +1,44 @@
+{
+  "name": "vue-global-emitter",
+  "version": "0.1.0",
+  "description": "Global vue emitter which realising pub/sub without and with pull",
+  "main": "dist/vue-global-emitter.js",
+  "files": [
+    "dist",
+    "types/*.d.ts"
+  ],
+  "typings": "types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grinat/vue-global-emitter.git"
+  },
+  "keywords": [
+    "vue",
+    "emitter",
+    "pub/sub"
+  ],
+  "author": "Gabdrasitov Rinat <paladin2012gnu@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/grinat/vue-global-emitter/issues"
+  },
+  "homepage": "https://github.com/grinat/vue-global-emitter#readme",
+  "scripts": {
+    "dev": "rollup -c rollup.config.js -w",
+    "build": "rollup -c rollup.config.js",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "rxjs": "^5.5.0"
+  },
+  "devDependencies": {
+    "buble": "^0.16.0",
+    "eslint": "^3.0.0",
+    "eslint-plugin-vue-libs": "^1.2.0",
+    "rollup": "^0.50.0",
+    "rollup-plugin-buble": "^0.16.0",
+    "rollup-watch": "^4.3.1",
+    "typescript": "^2.5.2",
+    "vue": "^2.5.8"
+  }
+}
