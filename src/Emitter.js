@@ -8,7 +8,6 @@ class Emitter {
         this.options = Object.assign({
             debug: false
         }, opts)
-        console.log(this.options)
         this.subjects = events.messages
     }
 

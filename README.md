@@ -44,11 +44,11 @@ this.$emitter.listen('my-event-for-not-created-component', response => {
 })
 ```
 
-### Recomended use way
+### Recommended use way
 ```
  export default {
     // create subsribe
-    created () {
+    mounted () {
         this.messageSubs = this.$emitter.listen('im.socket', this.onSocketMessage)
     },
     methods: {
