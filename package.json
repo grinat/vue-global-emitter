@@ -1,6 +1,6 @@
 {
   "name": "vue-global-emitter",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Global vue emitter which realising pub/sub without and with pull",
   "main": "dist/vue-global-emitter.js",
   "files": [

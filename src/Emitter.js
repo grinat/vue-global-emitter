@@ -14,21 +14,21 @@ class Emitter {
     emit(name, data) {
         let fnName = this._createName(name)
         this.subjects[fnName] || (this.subjects[fnName] = new Subject())
-        this.options.debug === true && console.debug('Reactivex new subject=' + name + ' list of observers:', this.subjects[fnName])
+        this.options.debug === true && console.log('Reactivex new subject=' + name + ' list of observers:', this.subjects[fnName])
         this.subjects[fnName].next(data)
     }
 
     listen(name, handler) {
         let fnName = this._createName(name)
         this.subjects[fnName] || (this.subjects[fnName] = new Subject())
-        this.options.debug === true && console.debug('Reactivex new subject=' + name + ' list of observers:', this.subjects[fnName])
+        this.options.debug === true && console.log('Reactivex new subject=' + name + ' list of observers:', this.subjects[fnName])
         return this.subjects[fnName].subscribe(handler)
     }
 
     emitWithDelivery(name, data, deliveryRepeatCount = 200) {
         let fnName = this._createName(name)
         this.subjects[fnName] || (this.subjects[fnName] = new Subject())
-        this.options.debug === true && console.debug('Reactivex new delivery subject=' + name + ' list of observers:', this.subjects[fnName])
+        this.options.debug === true && console.log('Reactivex new delivery subject=' + name + ' list of observers:', this.subjects[fnName])
         data = data || {}
         data._delivery = {
             isReceived: false,
@@ -45,7 +45,7 @@ class Emitter {
         if (data._delivery.isReceived === false) {
             subjects[fnName].next(data)
             setTimeout(() => {
-                this.options.debug === true && console.debug('_repeatMessage ', data._delivery.repeats, data._delivery.isReceived)
+                this.options.debug === true && console.log('_repeatMessage ', data._delivery.repeats, data._delivery.isReceived)
                 data._delivery.repeats++
                 this._repeatMessage(subjects, {fnName, data})
             }, data._delivery.deliveryRepeatCount)
