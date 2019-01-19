@@ -1,5 +1,5 @@
 const events = {
-    messages: {}
+  messages: {}
 }
 
 export default events

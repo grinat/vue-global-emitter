@@ -5,7 +5,7 @@ module.exports = {
     output: {
         file: 'dist/vue-global-emitter.js',
         format: 'umd',
-        name: 'VueGlobalEmitter',
+        name: 'VueGlobalEmitter'
     },
     plugins: [buble()],
     external: ['rxjs']

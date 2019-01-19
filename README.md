@@ -48,7 +48,7 @@ this.$emitter.listen('my-event-for-not-created-component', response => {
 ```
  export default {
     // create subsribe
-    mounted () {
+    created () {
         this.messageSubs = this.$emitter.listen('im.socket', this.onSocketMessage)
     },
     methods: {
@@ -63,4 +63,14 @@ this.$emitter.listen('my-event-for-not-created-component', response => {
     }
 ```
 
+### Development
+build:
+```
+npm i
+npm run build
+```
 
+test:
+```
+npm run test
+```
