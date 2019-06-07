@@ -3,7 +3,7 @@
 Simple global vue emitter which realising pub/sub without and with pull for Vue.js
 
 ### Examples
-[Open](https://grinat.github.io/vue-global-emitter/examples/index.html) (see in /examples)
+[Open](https://grinat.github.io/vue-global-emitter/examples/) (see in /examples)
 
 ### Installation
 
