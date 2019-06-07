@@ -8,10 +8,15 @@ interface EmitterOptions {
   debug?: Boolean
 }
 
+interface SubscriberGroup {
+  unsubscribe: () => void
+}
+
 interface Emitter {
   emit: (name: string, data: any) => void,
   emitWithDelivery: (name: string, data: any, deliveryRepeatCount?: number) => void,
-  listen: (name: string, handler: Function) => Subscriber
+  listen: (name: string, handler: Function) => Subscriber,
+  group: (...subscribers: Subscriber[]) => SubscriberGroup
 }
 
 declare module "vue/types/vue" {

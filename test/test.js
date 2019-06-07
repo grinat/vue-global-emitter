@@ -80,4 +80,51 @@ describe('Testing emitter in vue', () => {
     // eslint-disable-next-line
     expect(res).to.be.true
   })
+
+  it('test group', () => {
+    vm = new Vue({
+      el: '#app2',
+      render: (createElement) => createElement('div'),
+      mounted () {
+        this.subsGroup = this.$emitter.group(
+          this.$emitter.listen('foo', this.onFoo),
+          this.$emitter.listen('bar', this.onBar)
+        )
+      },
+      methods: {
+        sendEvent (type, evt) {
+          this.lastEvtData = null
+          this.$emitter.emit(type, evt)
+          return true
+        },
+        onFoo (data) {
+          this.lastEvtData = data
+        },
+        onBar (data) {
+          this.lastEvtData = data
+        },
+        unsubscribe () {
+          this.subsGroup.unsubscribe()
+          return true
+        }
+      }
+    })
+
+    // sending events
+    vm.sendEvent('foo', { foo: 1 })
+    expect(vm.lastEvtData).to.have.property('foo')
+
+    vm.sendEvent('bar', { bar: 1 })
+    expect(vm.lastEvtData).to.have.property('bar')
+
+    // unsubs all
+    const res = vm.unsubscribe()
+    // eslint-disable-next-line
+    expect(res).to.be.true
+
+    // send events to empty
+    // lastEvtData must be reseted and no new data handled
+    vm.sendEvent('foo', { foo: 1 })
+    expect(vm.lastEvtData).to.be.a('null')
+  })
 })

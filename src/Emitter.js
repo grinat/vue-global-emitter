@@ -1,4 +1,5 @@
 import { Subject } from './Subject'
+import { SubscribersGroup } from './SubscribersGroup'
 import events from './events'
 
 class Emitter {
@@ -58,6 +59,10 @@ class Emitter {
 
   _createName (name) {
     return `${name}`
+  }
+
+  group (...subscribers) {
+    return new SubscribersGroup(subscribers)
   }
 }
 
