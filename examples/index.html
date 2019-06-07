@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+</head>
+<body>
+
+<style type="text/css">
+  .apps {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  #map{
+    height: 300px;
+    width: 300px;
+  }
+</style>
+
+<div class="apps">
+  <div id="appLeft">
+    <p>Click on btn</p>
+    <div>Stream: {{stream}}</div>
+    <button @click="onClick('left')">Left click</button>
+  </div>
+
+  <div id="appRight">
+    <p>Click on btn</p>
+    <div>Stream: {{stream}}</div>
+    <button @click="onClick('right')">Right click</button>
+  </div>
+
+  <div>
+    <div id="map"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vue-global-emitter"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+
+<script>
+  const common = {
+    data: function () {
+      return {
+        stream: {}
+      }
+    },
+    created () {
+      this.subs = this.$emitter.listen('stream', (data) => {
+        this.stream = data
+      })
+    },
+    destroyed () {
+      this.subs.unsubscribe()
+    },
+    methods: {
+      onClick (clickFrom) {
+        this.$emitter.emit('stream', {
+          clickFrom,
+          time: new Date()
+        })
+      }
+    }
+  }
+
+  // same vue instance
+  const vmLeft = new Vue({
+    el: '#appLeft',
+    ...common
+  })
+
+  // same vue instance
+  const vmRight = new Vue({
+    el: '#appRight',
+    ...common
+  })
+
+  // create map
+  const map = L.map('map').setView([51.5, -0.09], 13)
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map)
+
+  // create vue for map
+  const vmLeaflet = new Vue({
+    template: '<div>Stream: {{stream}}</div>',
+    ...common
+  })
+
+  // create popup content and mount vue
+  const wrapEl = document.createElement('div')
+  const el = document.createElement('div')
+  wrapEl.appendChild(el)
+  vmLeaflet.$mount(el)
+
+  // create popup and put popup content with mounted vue
+  const popup = L.popup({
+    closeButton: false,
+    autoClose: false,
+    closeOnClick: false
+  })
+  popup
+    .setLatLng(map.getCenter())
+    .setContent(wrapEl)
+    .openOn(map)
+</script>
+
+</body>
+</html>

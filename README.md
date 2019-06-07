@@ -1,11 +1,14 @@
 # vue-global-emitter
 
-Simple global vue emitter which realising pub/sub without and with pull for Vue.js Used [RxJS](https://github.com/Reactive-Extensions/RxJS) 
+Simple global vue emitter which realising pub/sub without and with pull for Vue.js
+
+### Examples
+[Open](https://grinat.github.io/vue-global-emitter/examples/index.html) (see in /examples)
 
 ### Installation
 
 ```
-npm install vue-global-emitter rxjs --save
+npm install vue-global-emitter --save
 ```
 
 ```
