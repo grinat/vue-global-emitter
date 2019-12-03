@@ -3,11 +3,11 @@ import { SubscribersGroup } from './SubscribersGroup'
 import events from './events'
 
 class Emitter {
-  constructor (opts = {}) {
+  constructor (opts = {}, subjectsStorage) {
     this._options = Object.assign({
       debug: false
     }, opts)
-    this._subjects = events.messages
+    this._subjects = subjectsStorage || events.messages
   }
 
   emit (name, data) {

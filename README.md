@@ -11,6 +11,15 @@ Simple global vue emitter which realising pub/sub without and with pull for Vue.
 npm install vue-global-emitter --save
 ```
 
+#### Use without vue
+```js
+import {Emitter} from 'vue-global-emitter'
+
+const em = new Emitter()
+em.emit('my-event', {foo: 'bar'})
+```
+
+#### Use in vue
 ```js
 import Vue from 'vue'
 import VueGlobalEmitter from 'vue-global-emitter'
