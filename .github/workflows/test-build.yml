@@ -1,0 +1,20 @@
+on: [push, pull_request]
+name: Test, build
+jobs:
+  install:
+    name: Install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Install
+        uses: actions/npm@e7aaefed7c9f2e83d493ff810f17fa5ccd7ed437
+        with:
+          args: install
+      - name: Test
+        uses: actions/npm@e7aaefed7c9f2e83d493ff810f17fa5ccd7ed437
+        with:
+          args: test
+      - name: Build
+        uses: actions/npm@e7aaefed7c9f2e83d493ff810f17fa5ccd7ed437
+        with:
+          args: build
