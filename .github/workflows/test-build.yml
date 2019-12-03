@@ -1,20 +1,14 @@
 on: [push, pull_request]
 name: Test, build
 jobs:
-  install:
-    name: Install
+  master:
+    name: Master
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Install
-        uses: actions/npm@e7aaefed7c9f2e83d493ff810f17fa5ccd7ed437
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
         with:
-          args: install
-      - name: Test
-        uses: actions/npm@e7aaefed7c9f2e83d493ff810f17fa5ccd7ed437
-        with:
-          args: test
-      - name: Build
-        uses: actions/npm@e7aaefed7c9f2e83d493ff810f17fa5ccd7ed437
-        with:
-          args: build
+          node-version: '10.x'
+      - run: npm install
+      - run: npm test
+      - run: npm build
